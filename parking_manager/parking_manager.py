@@ -66,8 +66,8 @@ class ParkingManager:
             available_slot.vehicle = Vehicle(vehicle_number, driver_age)
             available_slot.is_available = False
 
-            print('Car with vehicle no "{}" has been parked at slot number {}'
-                  .format(vehicle_number, available_slot.slot_no))
+            print('Car with vehicle number "{}" has been parked at slot number {}'
+                  .format(vehicle_number, available_slot.slot_no+1))
 
             return
 
@@ -118,7 +118,7 @@ class ParkingManager:
         for parking_slot in self.parking_slots.values():
             if (not parking_slot.is_available and parking_slot.vehicle and
                 parking_slot.vehicle.driver_age == driver_age):
-                slot_nos.append(str(parking_slot.slot_no))
+                slot_nos.append(str(parking_slot.slot_no+1))
 
         if slot_nos:
             print(",".join(slot_nos))
@@ -140,7 +140,7 @@ class ParkingManager:
         for parking_slot in self.parking_slots.values():
             if (not parking_slot.is_available and parking_slot.vehicle and
                 parking_slot.vehicle.vehicle_number == vehicle_number):
-                slot_no = parking_slot.slot_no
+                slot_no = parking_slot.slot_no+1
                 break
 
         if slot_no:

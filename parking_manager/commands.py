@@ -18,7 +18,8 @@ class CommandHandler:
         file_obj = open(given_file)
         try:
             while True:
-                line = file_obj.next()
+                line = file_obj.readline()
+
                 if line.endswith('\n'):
                     line = line[:-1]
                 else:
