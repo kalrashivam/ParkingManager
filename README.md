@@ -13,12 +13,21 @@ Requirements
 1. Python 3
 2. Any machine 
 
-To run add your file in the folder and run 
+To run add your file in the repository folder and run 
 ```
 python ./commands.py ../<filname>
 
 For e.g python ./commands.py ../inputs.txt
 ```
+Also added an interactive method to add requests:
+```
+python ./commands.py
+
+Start writing commands
+For .e.g
+  Enter command: Create_parking_lot 6
+```
+
 
 ** Commands Available**
 
