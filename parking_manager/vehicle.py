@@ -4,23 +4,23 @@ class Vehicle:
     """
 
     def __init__(self, veh_no, driver_age):
-        self._vehicle_number = veh_no
-        self._driver_age = driver_age
+        self.vehicle_number = veh_no
+        self.driver_age = driver_age
 
     # Getter methods for the fields.
     @property
     def vehicle_number(self):
-        return self.vehicle_number
+        return self._vehicle_number
 
     @property
     def driver_age(self):
-        return self.driver_age
+        return self._driver_age
 
     # Setter methods for the fields
     @vehicle_number.setter
     def vehicle_number(self, value):
-        self._reg_no = value
+        self._vehicle_number = value
 
     @driver_age.setter
     def driver_age(self, value):
-        self._colour = value
+        self._driver_age = value

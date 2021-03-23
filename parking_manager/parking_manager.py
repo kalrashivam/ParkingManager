@@ -13,12 +13,12 @@ class ParkingManager:
 
     def check_parking_slots(self):
         if len(self.parking_slots) == 0:
-            print "Parking not initiated"
+            print("Parking not initiated")
             return False
 
         return True
 
-    def create_parking(self, slots):
+    def create_parking_lot(self, slots):
         """
         Creates a parking with a given no. of slots as input.
 
@@ -29,12 +29,12 @@ class ParkingManager:
         slots = int(slots)
 
         if len(self.parking_slots.keys()) > 0:
-            print "Parking already exists"
+            print("Parking already exists")
             return
 
         if slots > 0:
             for slot in range(slots):
-                self.slots[slot] = ParkingSlot(slot_no=i)
+                self.parking_slots[slot] = ParkingSlot(slot_no=slot)
 
             print('Created Parking of {} slots'.format(slots))
 
@@ -67,15 +67,14 @@ class ParkingManager:
             available_slot.is_available = False
 
             print('Car with vehicle no "{}" has been parked at slot number {}'
-                  .format(available_slot.car.vehicle_number,
-                          available_slot.slot_no))
+                  .format(vehicle_number, available_slot.slot_no))
 
             return
 
         print("Cannot park any more cars")
         return
 
-    def Remove_vehicle(self, slot_no):
+    def leave(self, slot_no):
         """
         Removes a vehicle from a slot.
 
@@ -84,14 +83,13 @@ class ParkingManager:
         """
 
         slot_no = int(slot_no)
-
         if not self.check_parking_slots:
             return
 
-        if slot_no in self.parking_slots[slot_no]:
+        if slot_no in self.parking_slots:
             parking_slot = self.parking_slots[slot_no]
 
-            if not parking_slot.is_available and parking_slot.car:
+            if not parking_slot.is_available and parking_slot.vehicle:
                 vehicle = parking_slot.vehicle
                 vehicle_number = vehicle.vehicle_number
                 driver_age = vehicle.driver_age
@@ -120,10 +118,10 @@ class ParkingManager:
         for parking_slot in self.parking_slots.values():
             if (not parking_slot.is_available and parking_slot.vehicle and
                 parking_slot.vehicle.driver_age == driver_age):
-                slot_nos.append(parking_slot.slot_no)
+                slot_nos.append(str(parking_slot.slot_no))
 
         if slot_nos:
-            print(slot_nos.join(','))
+            print(",".join(slot_nos))
         else:
             print(None)
 
@@ -148,7 +146,7 @@ class ParkingManager:
         if slot_no:
             print(slot_no)
         else:
-            print "The given vehicle_number does not exit"
+            print("The given vehicle_number does not exist")
 
     def vehicle_registration_number_for_driver_of_age(self, driver_age):
         """
@@ -166,9 +164,9 @@ class ParkingManager:
         for parking_slot in self.parking_slots.values():
             if (not parking_slot.is_available and parking_slot.vehicle and
                 parking_slot.vehicle.driver_age == driver_age):
-                slot_nos.append(parking_slot.vehicle.vehicle_number)
+                vehicle_numbers.append(str(parking_slot.vehicle.vehicle_number))
 
-        if slot_nos:
-            print(vehicle_numbers.join(','))
+        if vehicle_numbers:
+            print(",".join(vehicle_numbers))
         else:
             print(None)
